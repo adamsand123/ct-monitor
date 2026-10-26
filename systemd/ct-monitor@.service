@@ -1,0 +1,32 @@
+[Unit]
+Description=Certificate Transparency monitor for %i
+Documentation=file:///usr/local/share/doc/ct-monitor/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# Optional settings: CERTSPOTTER_TOKEN, CT_ALLOWED_ISSUERS (see README)
+EnvironmentFile=-/etc/ct-monitor/ct-monitor.env
+ExecStart=/usr/local/bin/ct-monitor %i
+
+# Runs as a throwaway user; creates /var/lib/ct-monitor and /var/log/ct-monitor
+DynamicUser=yes
+StateDirectory=ct-monitor
+LogsDirectory=ct-monitor
+UMask=0022
+
+# Hardening
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallFilter=@system-service

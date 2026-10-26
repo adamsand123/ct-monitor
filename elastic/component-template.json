@@ -1,0 +1,99 @@
+{
+  "template": {
+    "mappings": {
+      "properties": {
+        "ct": {
+          "properties": {
+            "monitored_domain": {
+              "type": "keyword"
+            },
+            "issuer": {
+              "type": "keyword"
+            },
+            "tbs_sha256": {
+              "type": "keyword"
+            },
+            "baseline": {
+              "type": "boolean"
+            },
+            "issuer_unexpected": {
+              "type": "boolean"
+            }
+          }
+        },
+        "tls": {
+          "properties": {
+            "server": {
+              "properties": {
+                "issuer": {
+                  "type": "keyword"
+                },
+                "not_before": {
+                  "type": "date"
+                },
+                "not_after": {
+                  "type": "date"
+                },
+                "hash": {
+                  "properties": {
+                    "sha256": {
+                      "type": "keyword"
+                    }
+                  }
+                },
+                "x509": {
+                  "properties": {
+                    "alternative_names": {
+                      "type": "keyword"
+                    },
+                    "not_before": {
+                      "type": "date"
+                    },
+                    "not_after": {
+                      "type": "date"
+                    },
+                    "issuer": {
+                      "properties": {
+                        "distinguished_name": {
+                          "type": "keyword"
+                        },
+                        "common_name": {
+                          "type": "keyword"
+                        },
+                        "organization": {
+                          "type": "keyword"
+                        },
+                        "organizational_unit": {
+                          "type": "keyword"
+                        },
+                        "country": {
+                          "type": "keyword"
+                        },
+                        "locality": {
+                          "type": "keyword"
+                        },
+                        "state_or_province": {
+                          "type": "keyword"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "related": {
+          "properties": {
+            "hosts": {
+              "type": "keyword"
+            },
+            "hash": {
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    }
+  }
+}
